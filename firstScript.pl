@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+
+
 &init_words;
 print "What is your name? ";
 $name = <STDIN>;
@@ -20,12 +22,13 @@ if ($Name =~ /^randal\b/i) {
 ## subroutines from here down
 
 sub init_words {
-    open(WORDLIST, "wordslist");
+    open(WORDSLIST, "wordslist");
     while($name = <WORDSLIST>) {
 	chop($name);
 	$word = <WORDSLIST>;
 	chop($word);
 	$words{$name} = $word;
+	print "just added $name, $word pair\n";
     }
     close(WORDSLIST);
 }
