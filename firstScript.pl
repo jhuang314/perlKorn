@@ -1,6 +1,23 @@
 #!/usr/bin/perl
 
+&init_words;
+print "What is your name? ";
+$name = <STDIN>;
+chop($name);
+if ($Name =~ /^randal\b/i) {
+    print "Hello, Randhal!  Special greetings!";
+} else {
+    print "Hello, $name!  Enter secret word: ";
+    $guess = <STDIN>;
+    chop($guess);
+    while (! &good_word($name, $guess)) {
+	print "Bad Guess.  Try again: ";
+	$guess = <STDIN>;
+	chop($guess);
+    }
+}
 
+## subroutines from here down
 
 sub init_words {
     open(WORDLIST, "wordslist");
