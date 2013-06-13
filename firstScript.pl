@@ -22,15 +22,20 @@ if ($Name =~ /^randal\b/i) {
 ## subroutines from here down
 
 sub init_words {
-    open(WORDSLIST, "wordslist");
-    while($name = <WORDSLIST>) {
-	chop($name);
-	$word = <WORDSLIST>;
-	chop($word);
-	$words{$name} = $word;
-	print "just added $name, $word pair\n";
+    while($filename = <*.secret>) {
+	open(WORDSLIST, $filename);
+	if (-M WORDSLIST < 7) {
+	    while($name = <WORDSLIST>) {
+		chop($name);
+		$word = <WORDSLIST>;
+		chop($word);
+		$words{$name} = $word;
+#		print "just added $name, $word pair\n";
+	    }
+	}
+	close(WORDSLIST);
     }
-    close(WORDSLIST);
+
 }
 
 sub good_word {
