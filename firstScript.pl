@@ -1,11 +1,10 @@
 #!/usr/bin/perl
 
-
-
 &init_words;
-print "What is your name? ";
-$name = <STDIN>;
-chop($name);
+# automatically get the name
+@password = getpwuid($<);
+$name = $password[6];
+$name =~ s/,.*//;
 if ($Name =~ /^randal\b/i) {
     print "Hello, Randhal!  Special greetings!";
 } else {
@@ -37,6 +36,8 @@ sub init_words {
     }
 
 }
+
+
 
 sub good_word {
     local($somename, $someguess) = @_;
