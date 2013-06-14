@@ -17,6 +17,9 @@ if ($Name =~ /^randal\b/i) {
 	chop($guess);
     }
 }
+dbmopen(%last_good, "lastdb", 0666);
+$last_good{$name} = time;
+dbmclose(%last_good);
 
 ## subroutines from here down
 
